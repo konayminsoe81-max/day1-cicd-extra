@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build artifact
+dist/
+
+# Ensure documentation is tracked
+!README.md

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Cyber Arcade: Neon Defender</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="arcade-body">
+  <div class="crt-overlay"></div>
+  
+  <div class="arcade-cabinet">
+    <!-- Header / Top Marquee -->
+    <header class="arcade-header">
+      <div class="branding">
+        <span class="neon-badge">RETRO WAVE</span>
+        <h1 id="app-title" class="neon-title">CYBER ARCADE</h1>
+        <p class="subtitle">NEON DEFENDER // DEFEND THE GRID</p>
+      </div>
+
+      <div class="meta-panel">
+        <div class="meta-item">
+          <span class="label">VERSION</span>
+          <span id="release-version" class="value glow-cyan">v1.0.0</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">STATUS</span>
+          <span id="system-status" class="value badge-status">Operational</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">BUILD</span>
+          <span id="build-number" class="value">local</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Arcade Display -->
+    <main class="arcade-screen-container">
+      <!-- In-Game HUD -->
+      <div class="game-hud">
+        <div class="hud-box">
+          <span class="hud-label">SCORE</span>
+          <span id="hud-score" class="hud-val">00000</span>
+        </div>
+        <div class="hud-box">
+          <span class="hud-label">HIGH SCORE</span>
+          <span id="hud-high-score" class="hud-val">00000</span>
+        </div>
+        <div class="hud-box">
+          <span class="hud-label">WAVE</span>
+          <span id="hud-wave" class="hud-val">01</span>
+        </div>
+        <div class="hud-box">
+          <span class="hud-label">LIVES</span>
+          <span id="hud-lives" class="hud-val">❤️❤️❤️</span>
+        </div>
+      </div>
+
+      <!-- Canvas Screen -->
+      <div class="canvas-wrapper">
+        <canvas id="game-canvas" width="600" height="700"></canvas>
+        
+        <!-- CRT scanline effect toggle button -->
+        <button id="toggle-crt" class="scanline-btn" title="Toggle CRT Filter">CRT: ON</button>
+      </div>
+
+      <!-- Touch / Mobile Controls -->
+      <div class="touch-controls" id="touch-controls">
+        <div class="dpad">
+          <button id="btn-left" class="ctrl-btn">◀ LEFT</button>
+          <button id="btn-right" class="ctrl-btn">RIGHT ▶</button>
+        </div>
+        <button id="btn-fire" class="ctrl-btn fire-btn">⚡ FIRE</button>
+      </div>
+    </main>
+
+    <!-- Footer / Instructions & CI/CD info -->
+    <footer class="arcade-footer">
+      <div class="controls-guide">
+        <span class="guide-tag">DESKTOP:</span>
+        <span><code>[A] / [D]</code> or <code>[◀] / [▶]</code> Move</span>
+        <span><code>[SPACE]</code> Fire Laser</span>
+        <span><code>[P]</code> Pause</span>
+        <span><code>[R]</code> Restart</span>
+      </div>
+      <div class="cicd-pill">
+        <span>CI/CD Pipeline: </span>
+        <span class="pipeline-tag" id="pipeline-status">GitHub Flow Verified</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./game.js"></script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --bg-dark: #0a0815;
+  --cabinet-bg: #110d24;
+  --neon-cyan: #00f3ff;
+  --neon-pink: #ff007f;
+  --neon-amber: #ffaa00;
+  --neon-green: #00ff88;
+  --text-muted: #8c82ab;
+  --border-neon: rgba(0, 243, 255, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body.arcade-body {
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(ellipse at 50% -20%, rgba(255, 0, 127, 0.25), transparent 70%),
+    linear-gradient(rgba(10, 8, 21, 0.95), rgba(10, 8, 21, 0.95));
+  font-family: 'Share Tech Mono', monospace;
+  color: #e0dced;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  overflow-x: hidden;
+}
+
+/* CRT Scanline & Curved Vignette Effect */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 99;
+  opacity: 0.7;
+}
+
+.crt-off .crt-overlay {
+  display: none;
+}
+
+/* Main Cabinet Wrapper */
+.arcade-cabinet {
+  background: var(--cabinet-bg);
+  border: 2px solid var(--border-neon);
+  box-shadow: 
+    0 0 30px rgba(0, 243, 255, 0.2),
+    0 0 60px rgba(255, 0, 127, 0.15),
+    inset 0 0 20px rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  max-width: 660px;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Top Marquee Header */
+.arcade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 2px dashed rgba(255, 0, 127, 0.3);
+  padding-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.branding .neon-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--neon-pink);
+  border: 1px solid var(--neon-pink);
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-shadow: 0 0 8px var(--neon-pink);
+}
+
+.neon-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 
+    0 0 5px #fff,
+    0 0 10px var(--neon-cyan),
+    0 0 20px var(--neon-cyan),
+    0 0 40px var(--neon-cyan);
+  margin-top: 4px;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  color: var(--neon-amber);
+  letter-spacing: 1px;
+}
+
+/* Meta Panel */
+.meta-panel {
+  display: flex;
+  gap: 12px;
+}
+
+.meta-item {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meta-item .label {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.meta-item .value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.glow-cyan {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 6px var(--neon-cyan);
+}
+
+.badge-status {
+  color: var(--neon-green);
+  text-shadow: 0 0 6px var(--neon-green);
+}
+
+.badge-status.degraded {
+  color: #ff3344;
+  text-shadow: 0 0 6px #ff3344;
+}
+
+/* In-Game HUD */
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  background: #06040d;
+  border: 1px solid var(--border-neon);
+  border-radius: 6px;
+  padding: 8px 14px;
+  margin-bottom: 8px;
+}
+
+.hud-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hud-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.hud-val {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+/* Canvas Screen */
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 6 / 7;
+  background: #020108;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #201a40;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
+}
+
+canvas#game-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.scanline-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(17, 13, 36, 0.8);
+  border: 1px solid var(--border-neon);
+  color: var(--neon-cyan);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Touch Controls */
+.touch-controls {
+  display: none;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 12px;
+}
+
+@media (pointer: coarse), (max-width: 600px) {
+  .touch-controls {
+    display: flex;
+  }
+}
+
+.dpad {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.ctrl-btn {
+  background: #1b1638;
+  border: 1px solid var(--neon-cyan);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  padding: 14px 10px;
+  border-radius: 6px;
+  flex: 1;
+  text-align: center;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.ctrl-btn:active {
+  background: var(--neon-cyan);
+  color: #000;
+}
+
+.fire-btn {
+  background: #3b0d2a;
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+  font-weight: 900;
+  flex: 1;
+}
+
+.fire-btn:active {
+  background: var(--neon-pink);
+  color: #fff;
+}
+
+/* Footer / CI/CD badge */
+.arcade-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.controls-guide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.guide-tag {
+  color: var(--neon-amber);
+  font-weight: 700;
+}
+
+.controls-guide code {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--neon-cyan);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.cicd-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pipeline-tag {
+  background: rgba(0, 255, 136, 0.15);
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-family: 'Orbitron', sans-serif;
+}
