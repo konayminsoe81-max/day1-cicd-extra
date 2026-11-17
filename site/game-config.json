@@ -6,5 +6,5 @@
   "player_speed": 6,
   "fire_rate_ms": 180,
   "score_multiplier": 10,
-  "system_status": "Operational"
+  "system_status": "Degraded"
 }
