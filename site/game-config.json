@@ -1,10 +1,10 @@
 {
   "game_title": "CYBER ARCADE: NEON DEFENDER",
-  "version": "v1.0.0",
+  "version": "v1.1.0",
   "difficulty": "medium",
   "initial_lives": 3,
   "player_speed": 6,
   "fire_rate_ms": 180,
   "score_multiplier": 10,
-  "system_status": "Degraded"
+  "system_status": "Operational"
 }
